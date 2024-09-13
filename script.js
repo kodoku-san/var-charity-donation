@@ -20,7 +20,11 @@ function initializeDataTable() {
                 targets: 2,
                 render: function(data, type, row) {
                     if (type === 'display') {
-                        return formatter.format(data)
+                        const formatAm = formatter.format(data);
+                        
+                        if(data == $('#searchInput').val()) return `<span class="bg-yellow-300 text-slate-800">${formatAm}</span>`;
+
+                        return formatAm;
                     }
                     return data;
                 }
@@ -69,9 +73,10 @@ async function searchData(query) {
             const response = await fetch(`content/data-${i}.json`);
             const data = await response.json();
             const filteredData = data.filter(item => 
-                Object.values(item).some(value => 
-                    value.toString().toLowerCase().includes(removeVietnameseTones(query).toLowerCase())
-                )
+                Object.values(item).some((value, index) => {
+                    if(index == 2) value = parseFloat(value.replace(/,/g, ''));
+                    return value.toString().toLowerCase().includes(removeVietnameseTones(query).toLowerCase())
+                })
             ).map(item => {
                 return {
                     ...item,
@@ -80,7 +85,7 @@ async function searchData(query) {
                     am: parseFloat(item.am.replace(/,/g, '')),
                 };
             });
-            console.log(filteredData);
+            
             dataTable.rows.add(filteredData).draw(false);
         } catch (error) {
             console.error(`Error loading or processing data-${i}.json:`, error);
