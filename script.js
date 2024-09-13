@@ -67,7 +67,7 @@ async function searchData(query) {
     $('#loading').show();
     dataTable.clear();
     const regex = new RegExp(`(${removeVietnameseTones(query)})`, 'gi');
-    console.log(regex);
+    
     for (let i = 1; i <= totalFiles; i++) {
         try {
             const response = await fetch(`content/data-${i}.json`);
