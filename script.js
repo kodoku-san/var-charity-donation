@@ -17,7 +17,7 @@ function initializeDataTable() {
         ],
         columnDefs: [
             {
-                targets: 2, // Cột số tiền (index 2)
+                targets: 2,
                 render: function(data, type, row) {
                     if (type === 'display') {
                         return formatter.format(data)
