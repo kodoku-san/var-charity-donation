@@ -62,6 +62,7 @@ function initializeDataTable() {
 async function searchData(query) {
     $('#loading').show();
     dataTable.clear();
+    const regex = new RegExp(`(${query})`, 'gi');
 
     for (let i = 1; i <= totalFiles; i++) {
         try {
@@ -74,9 +75,12 @@ async function searchData(query) {
             ).map(item => {
                 return {
                     ...item,
-                    am: parseFloat(item.am.replace(/,/g, ''))
+                    c: item.c.replace(regex, '<span class="bg-yellow-300 text-slate-800">$1</span>'),
+                    no: item.no.replace(regex, '<span class="bg-yellow-300 text-slate-800">$1</span>'),
+                    am: parseFloat(item.am.replace(/,/g, '')),
                 };
             });
+            console.log(filteredData);
             dataTable.rows.add(filteredData).draw(false);
         } catch (error) {
             console.error(`Error loading or processing data-${i}.json:`, error);
