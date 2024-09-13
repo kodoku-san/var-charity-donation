@@ -8,6 +8,7 @@ const formatter = new Intl.NumberFormat('vi-VN', {
 
 function initializeDataTable() {
     dataTable = $('#dataTable').DataTable({
+        responsive: true,
         columns: [
             { data: 'd' },
             { data: 'no' },
@@ -35,14 +36,13 @@ function initializeDataTable() {
         processing: true,
         deferRender: true,
         scrollY: 400,
-        dom: '<"flex justify-between items-center"l<"ml-2"i>>rtip',
+        dom: '<"flex justify-between items-center max-lg:flex-wrap"l<"ml-2 max-lg:ml-0"i>>rtip',
         pagingType: "simple_numbers",
         rowCallback: function(row, data, index) {
             $(row).addClass('hover:bg-slate-100 transition-colors duration-200 text-slate-700');
         },
         drawCallback: function(settings) {
             var api = this.api();
-            var pageInfo = api.page.info();
             
             $('.dataTables_paginate')
                 .addClass('mt-4 flex justify-center')

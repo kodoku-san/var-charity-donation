@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tìm kiếm dữ liệu</title>
+    <title>Check var quyên góp bão lụt</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -17,6 +17,9 @@
         }
         .dataTables_scroll {
             margin-top: 16px;
+        }
+        .dataTables_scrollHead {
+            overflow: auto!important;
         }
         .dataTables_length {
             font-size: 14px;
@@ -39,7 +42,7 @@
         }
     </style>
 </head>
-<body class="bg-slate-100 p-8">
+<body class="bg-slate-100 p-8 max-lg:p-2">
     <div class="mx-auto bg-white rounded-lg shadow-md p-6">
         <h1 class="text-2xl font-bold mb-4 text-slate-800">Check var quyên góp</h1>
         <p class="text-sm text-slate-600 mb-4">
@@ -47,8 +50,8 @@
         </p>
         <div id="searchContainer" class="mb-6">
             <div class="flex">
-                <input type="text" id="searchInput" placeholder="Nhập từ khóa tìm kiếm" class="flex-grow px-4 py-2 border border-slate-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                <button id="searchButton" class="bg-blue-500 text-white px-6 py-2 rounded-r-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">Tìm kiếm</button>
+                <input type="text" id="searchInput" placeholder="Nhập từ khóa tìm kiếm" class="flex-grow px-4 py-2 border border-slate-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500 max-lg:px-2 max-lg:py-1.5 max-lg:text-sm">
+                <button id="searchButton" class="bg-blue-500 text-white px-6 py-2 max-lg:px-2 max-lg:py-1.5 max-lg:text-sm rounded-r-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">Tìm kiếm</button>
             </div>
         </div>
         <div id="loading" class="hidden text-center text-sky-600 my-4">
@@ -65,7 +68,7 @@
                         <th class="py-3 px-6 text-left text-white min-w-24">Ngày GD</th>
                         <th class="py-3 px-6 text-left text-white min-w-24">Tài khoản</th>
                         <th class="py-3 px-6 text-left text-white min-w-24">Số tiền</th>
-                        <th class="py-3 px-6 text-left text-white">Nội dung</th>
+                        <th class="py-3 px-6 text-left text-white min-w-24">Nội dung</th>
                     </tr>
                 </thead>
             </table>
