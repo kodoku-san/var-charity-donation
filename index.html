@@ -17,9 +17,11 @@
         }
         .dataTables_scroll {
             margin-top: 16px;
+            overflow: auto;
         }
-        .dataTables_scrollHead {
-            overflow: auto!important;
+        .dataTables_scrollHead,
+        .dataTables_scrollBody {
+            overflow: unset!important;
         }
         .dataTables_length {
             font-size: 14px;
